@@ -45,7 +45,7 @@ exports.auth = async(req, res, next) => {
     }
 };
 
-// isStudent
+// isStudent ??
 exports.isStudent = async(req, res, next) => {
     try{
         if(req.user.accountType !== "Student"){
