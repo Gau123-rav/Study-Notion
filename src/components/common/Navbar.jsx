@@ -12,17 +12,6 @@ import { categories } from "../../services/api";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { ACCOUNT_TYPE } from "../../utils/constants";
 
-// const subLinks = [
-//     {
-//         title: "Python",
-//         link: "/catalog/python"
-//     },
-//     {
-//         title: "Web Development",
-//         link: "/catalog/web-development"
-//     }
-// ];
-
 function Navbar() {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
@@ -37,9 +26,9 @@ function Navbar() {
       setLoading(true)
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API)
-        console.log('respone', res.data)
+        // console.log('respone', res.data)
         setSubLinks(res.data.data)
-        console.log("sub links", subLinks)
+        // console.log("sub links", subLinks)
       } catch (error) {
         console.log("Could not fetch Categories.", error)
       }

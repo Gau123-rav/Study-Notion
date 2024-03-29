@@ -81,16 +81,17 @@ export default function CourseBuilderForm() {
   }
 
   const goToNext = () => {
+    console.log("course --> " , course );
     if (course.courseContent.length === 0) {
       toast.error("Please add atleast one section")
       return
     }
-    if (
-      course.courseContent.some((section) => section.subSection.length === 0)
-    ) {
-      toast.error("Please add atleast one lecture in each section")
-      return
-    }
+    // if (course.courseContent.some((section) => section.subSection.length === 0)) {
+    //   console.log("section --- " , section) ;
+    //   toast.error("Please add atleast one lecture in each section")
+    //   return
+    // }
+    
     dispatch(setStep(3))
   }
 
@@ -140,7 +141,7 @@ export default function CourseBuilderForm() {
           )}
         </div>
       </form>
-      {course.courseContent.length > 0 && (
+      {course?.courseContent?.length > 0 && (
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
       )}
       {/* Next Prev Button */}

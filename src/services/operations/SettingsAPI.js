@@ -53,11 +53,12 @@ export function updateProfile(token, formData) {
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
         Authorization: `Bearer ${token}`,
       })
-      console.log("UPDATE_PROFILE_API API RESPONSE............", response)
+      console.log("UPDATE_PROFILE_API API RESPONSE............", response);
 
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
+      
       const userImage = response.data.updatedUserDetails.image
         ? response.data.updatedUserDetails.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.updatedUserDetails.firstName} ${response.data.updatedUserDetails.lastName}`
@@ -67,7 +68,7 @@ export function updateProfile(token, formData) {
       toast.success("Profile Updated Successfully")
     } catch (error) {
       console.log("UPDATE_PROFILE_API API ERROR............", error)
-      toast.error("Could Not Update Profile")
+      toast.error("Could Not Update Profile 123")
     }
     toast.dismiss(toastId)
   }
@@ -76,6 +77,7 @@ export function updateProfile(token, formData) {
 export async function changePassword(token, formData) {
   const toastId = toast.loading("Loading...")
   try {
+    console.log("Api -- " , formData)
     const response = await apiConnector("POST", CHANGE_PASSWORD_API, formData, {
       Authorization: `Bearer ${token}`,
     })

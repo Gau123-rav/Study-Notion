@@ -1,14 +1,16 @@
 const { error } = require("console");
+const Course = require("../models/Course");
 const CourseProgress = require("../models/CourseProgress");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
+const mongoose = require("mongoose")
+const { convertSecondsToDuration } = require("../utils/secToDuration")
 
 exports.updateProfile = async(req, res) => {
     try{
         // Get data
         const {dateOfBirth= "", about= "", contactNumber, gender} = req.body;
-
         // Get userId
         const id = req.user.id;
 
@@ -23,8 +25,11 @@ exports.updateProfile = async(req, res) => {
         // Find profile
         const userDetails = await User.findById(id);
         const profileId = userDetails.additionalDetails;
-        const profileDetails = await Profile.findById(profileId);
 
+        console.log("pro", Profile);
+        
+        const profileDetails = await Profile.findById(profileId);
+        console.log("profileDetails", profileDetails);
         // Update profile
         profileDetails.dateOfBirth = dateOfBirth;
         profileDetails.about = about;
@@ -32,13 +37,14 @@ exports.updateProfile = async(req, res) => {
         profileDetails.gender = gender;
         await profileDetails.save();
 
-        // const updatedUserDetails = await User.findById(id).populate("additionalDetails").exec();
-
+        
+        const updatedUserDetails = await User.findById(id).populate("additionalDetails").exec();
+        console.log("update", updatedUserDetails);
         // Return response
         return res.status(200).json({
             success: true,
             message: 'Profile updated successfully',
-            profileDetails
+            updatedUserDetails
         });
     }
 
@@ -125,12 +131,12 @@ exports.updateDisplayPicture = async(req, res) => {
         
         console.log('backendResponse', req);
         
-        const displayProfile = req?.files?.displayPicture; 
-        console.log("profile", displayProfile);   
+        const displayPicture = req?.files?.displayPicture; 
+        console.log("profile", displayPicture);   
         const userId = req.user.id;
         console.log("user", userId);
         const image = await uploadImageToCloudinary(
-            displayProfile,
+            displayPicture,
             process.env.FOLDER_NAME,
             1000,
             1000

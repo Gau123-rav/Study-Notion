@@ -21,8 +21,10 @@ const Catalog = () => {
     useEffect(()=> {
         const getCategories = async() => {
             const res = await apiConnector("GET", categories.CATEGORIES_API);
+            console.log("response", res);
             const category_id = 
             res?.data?.data?.filter((ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName)[0]._id;
+            
             setCategoryId(category_id);
         }
         getCategories();
@@ -45,6 +47,8 @@ const Catalog = () => {
         
     },[categoryId]);
 
+    console.log("loading", loading);
+    console.log("catalog", catalogPageData);
 
     if (loading || !catalogPageData) {
         return (

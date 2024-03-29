@@ -7,6 +7,7 @@ import {Autoplay, FreeMode, Navigation, Pagination} from "swiper/modules";
 import Course_Card from './Course_Card';
 
 const CourseSlider = ({Courses}) => {
+    console.log("cou-->", Courses);
   return (
     <>
         {

@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const OTP = require("../models/OTP");
 const Profile = require("../models/Profile");
+const mailSender = require("../utils/mailSender");
+const { passwordUpdated } = require("../mail/templates/passwordUpdate");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -217,6 +219,7 @@ exports.login = async (req, res) => {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
+      console.log("token",token);
       res.cookie("token", token, options).status(200).json({
         success: true,
         token,
@@ -240,17 +243,10 @@ exports.login = async (req, res) => {
 
 // Change password
 exports.changePassword = async (req, res) => {
-  // Get data from req body
-  // Get oldPassword, newPassword, confirmPassword
-  // Validation
-
-  // Update password in DB
-  // Send mail -> Password updated
-  // Return response
   try {
     // Get user data from req.user
     const userDetails = await User.findById(req.user.id);
-
+    
     // Get old password, new password, and confirm new password from req.body
     const { oldPassword, newPassword } = req.body;
 
@@ -258,7 +254,8 @@ exports.changePassword = async (req, res) => {
     const isPasswordMatch = await bcrypt.compare(
       oldPassword,
       userDetails.password
-    );
+    );  
+
     if (!isPasswordMatch) {
       // If old password does not match, return a 401 (Unauthorized) error
       return res

@@ -5,12 +5,13 @@ import ProgressBar from '@ramonak/react-progress-bar';
 
 const EnrolledCourses = () => {
     const {token} = useSelector((state) => state.auth);
-    const {enrolledCourses, setEnrolledCourses} = useState(null);
+    const [enrolledCourses, setEnrolledCourses] = useState(null);
 
     const getEnrolledCourses = async() => {
         try{
             const response = await getUserEnrolledCourses(token);
             setEnrolledCourses(response);
+            // console.log("res-->", response);
         }
         catch(error){
             console.log("Unable to fetch enrolled courses");
