@@ -64,7 +64,7 @@ The database for the platform is built using MongoDB, a NoSQL database that prov
 
 ### Architecture Diagram
 Below is a high-level diagram that illustrates the architecture of the StudyNotion EdTech platform:
-
+![architecture.png]
 
 ## API Design
 The StudyNotion platform's API is designed following the REST architectural style. The API is implemented using Node.js and Express.js. It uses JSON for data exchange and follows standard HTTP request methods such as GET, POST, PUT, and DELETE.
