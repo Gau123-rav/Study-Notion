@@ -13,6 +13,7 @@ const Catalog = () => {
 
     const { loading } = useSelector((state) => state.profile);
     const { catalogName } = useParams();
+    // console.log("name", catalogName);
     const [active, setActive] = useState(1);
     const [catalogPageData, setCatalogPageData] = useState(null);
     const [categoryId, setCategoryId] = useState("");
@@ -21,10 +22,10 @@ const Catalog = () => {
     useEffect(()=> {
         const getCategories = async() => {
             const res = await apiConnector("GET", categories.CATEGORIES_API);
-            console.log("response", res);
+            // console.log("response", res);
             const category_id = 
             res?.data?.data?.filter((ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName)[0]._id;
-            
+            // console.log("id-->", category_id);
             setCategoryId(category_id);
         }
         getCategories();

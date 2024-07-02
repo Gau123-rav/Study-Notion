@@ -118,7 +118,7 @@ exports.signUp = async (req, res) => {
     const recentOtp = await OTP.find({ email })
       .sort({ createdAt: -1 })
       .limit(1);
-    console.log(recentOtp);
+    // console.log(recentOtp);
 
     // Validate OTP
     if (recentOtp.length == 0) {
@@ -169,7 +169,7 @@ exports.signUp = async (req, res) => {
       user
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).json({
       success: false,
       message: "User cannot be registered. Please try again",

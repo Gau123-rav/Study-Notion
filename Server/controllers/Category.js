@@ -45,6 +45,7 @@ exports.createCategory = async(req, res) => {
 exports.showAllCategories = async(req, res) => {
     try{
         const allCategories = await Category.find({});
+        // console.log("cat-->", allCategories);
         res.status(200).json({
             success: true,
             message: 'All categories returned successfully',
@@ -65,17 +66,19 @@ exports.getCategoryPageDetails = async(req, res) => {
     try{
         // Get category ID
         const {categoryId} = req.body;
+        // console.log("category id", categoryId);
         // const updatedCategoryId = new Mongoose.Types.ObjectId(categoryId);
 
         // Get courses for specified category ID
         const selectedCategory = await Category.findById(categoryId)
-                                        ?.populate({
-                                            path: "courses",
+                                        .populate({
+                                            path: "course",
                                             match: {status: "Published"},
                                             populate: "ratingAndReviews"
-                                        })?.exec();
-        console.log("category id", selectedCategory);
-        // selectedCategory.wait();
+                                        }).exec();
+        console.log("selected category", selectedCategory);
+        selectedCategory.wait();
+        
 
         // Validation
     
@@ -87,20 +90,26 @@ exports.getCategoryPageDetails = async(req, res) => {
             });
         }
 
-        if( !selectedCategory?.courses || selectedCategory?.courses?.length === 0){
+        // console.log("khcjkchsakc");
+
+        conosole.log("courses", selectedCategory?.course?.length);
+
+        if( !selectedCategory?.course || selectedCategory?.course?.length === 0){
             console.log("No courses found for the selected category.")
-            return res.status(404).json({
+            return res.status(404).json({   
               success: false,
               message: "No courses found for the selected category.",
             })
         }
+
+        // console.log("dnkjnsd");
 
         // Get courses for other categories
         const categoriesExceptSelected = await Category.find({
             _id: { $ne: categoryId },
         })
 
-        console.log( "cat exp selectd --> " , categoriesExceptSelected);
+        // console.log( "cat exp selectd --> " , categoriesExceptSelected);
         // Get courses for different categories
         let differentCategories = await Category.findOne(
             categoriesExceptSelected[getRandomInt(categoriesExceptSelected?.length)]._id
@@ -109,14 +118,14 @@ exports.getCategoryPageDetails = async(req, res) => {
             match: {status: "Published"}
         }).exec()
 
-        console.log("diff cat --> " , differentCategories );
+        // console.log("diff cat --> " , differentCategories );
 
         const allCourses = allCategories.flatMap((category) => category?.courses);
 
         // Get top 10 selling courses
         const mostSellingCourses = allCourses.sort((a, b) => b.sold - a.sold).slice(0, 10)
 
-        console.log("most selling --> " , mostSellingCourses);
+        // console.log("most selling --> " , mostSellingCourses);
 
         // console.log("mostSellingCourses COURSE", mostSellingCourses)
         res.status(200).json({

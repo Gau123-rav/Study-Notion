@@ -367,7 +367,9 @@ exports.getFullCourseDetails = async (req, res) => {
 exports.getInstructorCourses = async (req, res) => {
   try {
     // Get the instructor ID from the authenticated user or request body
+    // console.log("hii");
     const instructorId = req.user.id
+    // console.log("id-->", instructorId);
 
     // Find all courses belonging to the instructor
     const instructorCourses = await Course.find({
