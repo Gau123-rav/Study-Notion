@@ -61,3 +61,27 @@ The back-end of StudyNotion uses several data models and database schemas to man
 
 ### Database
 The database for the platform is built using MongoDB, a NoSQL database that provides a flexible and scalable data storage solution. MongoDB allows for the storage of unstructured and semi-structured data. The database stores the course content, user data, and other relevant information related to the platform.
+
+### Architecture Diagram
+Below is a high-level diagram that illustrates the architecture of the StudyNotion EdTech platform:
+
+
+## API Design
+The StudyNotion platform's API is designed following the REST architectural style. The API is implemented using Node.js and Express.js. It uses JSON for data exchange and follows standard HTTP request methods such as GET, POST, PUT, and DELETE.
+
+## Installation
+1. Clone the repository: git clone https://github.com/username/repo.git
+2. Navigate to the project directory: cd StudyNotion
+3. Install dependencies: npm install
+
+## Configuration
+1. Set up a MongoDB database and obtain the connection URL.
+2. Create a .env file in the root directory with the following environment variables:
+   MONGODB_URI=<your-mongodb-connection-url>
+   JWT_SECRET=<your-jwt-secret-key>
+
+## Usage
+1. Start the server: npm start
+2. Open a new terminal and navigate to the client directory: cd client
+3. Start the React development server: npm start
+Access the application in your browser at http://localhost:3000.
