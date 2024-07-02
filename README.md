@@ -1,31 +1,9 @@
-# React & Tailwind CSS Starter Pack
+# Study Notion: EdTech Platform
 
-This is a starter pack for creating React projects with Tailwind CSS configured. It uses React version **18.2** and Tailwind CSS version **3.2**.
+StudyNotion is an online education platform where users can create, watch, and rate educational content. It is built using the MERN stack, which includes ReactJS for the front-end, NodeJS for the back-end, MongoDB for the database, and ExpressJS for handling server requests.
 
-## Usage
+## Introduction
 
-This starter pack includes a basic setup for using **Tailwind CSS with React**. To start building your own components and styles, follow these steps:
+StudyNotion strives to offer a smooth and interactive learning experience for students, making education more accessible and engaging. The platform also allows instructors to demonstrate their expertise and connect with learners worldwide.
 
-1. Clone the repository to your local machine.
-    ```sh
-    git clone https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git
-    ```
-
-1. Install the required packages.
-    ```sh
-    cd react-tailwind-css-starter-pack
-    npm install
-    ```
-
-1. Start the development server.
-    ```sh
-    npm start
-    ```
-1. Open the project in your browser at [`http://localhost:3000`](http://localhost:3000) to view your project.
-1. Create your React components and add your styles using Tailwind classes. You can also create new CSS files and import them into your components.
-
-The project is set up to use `postcss-cli` to process your CSS files. You can add your own `tailwind.config.js` file to customize your Tailwind setup.
-
-## Contributing
-
-Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
+In the next sections, we will discuss the technical aspects of the platform, including its system architecture, API design, installation process, usage guidelines, and possible future improvements.
