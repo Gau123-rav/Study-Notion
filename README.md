@@ -79,7 +79,6 @@ The StudyNotion platform's API is designed following the REST architectural styl
 2. Create a .env file in the root directory with the following environment variables:
    MONGODB_URI=<your-mongodb-connection-url>
    JWT_SECRET=<your-jwt-secret-key>
->>>>>>> eb22cb78b97bb67bf43392456faf943176d9bc41
 
 ## Usage
 1. Start the server: npm start
