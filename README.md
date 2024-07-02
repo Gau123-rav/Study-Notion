@@ -53,6 +53,7 @@ The back-end of StudyNotion uses various frameworks, libraries, and tools to ens
 * Bcrypt: Used for password hashing, adding an extra layer of security to user data.
 * Mongoose: Used as an Object Data Modeling (ODM) library, providing a way to interact with MongoDB using JavaScript.
 
+
 #### Data Models and Database Schema
 The back-end of StudyNotion uses several data models and database schemas to manage data, including:
 * Student Schema: Includes fields such as name, email, password, and course details for each student.
@@ -61,10 +62,11 @@ The back-end of StudyNotion uses several data models and database schemas to man
 
 ### Database
 The database for the platform is built using MongoDB, a NoSQL database that provides a flexible and scalable data storage solution. MongoDB allows for the storage of unstructured and semi-structured data. The database stores the course content, user data, and other relevant information related to the platform.
+![schema](https://github.com/Gau123-rav/Study-Notion/assets/122555421/551596c4-f400-494e-9ba7-a723caf77d6b)
 
 ### Architecture Diagram
 Below is a high-level diagram that illustrates the architecture of the StudyNotion EdTech platform:
-![architecture.png]
+![architecture](https://github.com/Gau123-rav/Study-Notion/assets/122555421/088d5898-5a1e-468e-8a5d-daddeca3a827)
 
 ## API Design
 The StudyNotion platform's API is designed following the REST architectural style. The API is implemented using Node.js and Express.js. It uses JSON for data exchange and follows standard HTTP request methods such as GET, POST, PUT, and DELETE.
