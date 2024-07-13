@@ -127,7 +127,7 @@ exports.getAllRating = async(req, res) => {
                                     select: "firstName lastName email image"
                                 })
                                 .populate({
-                                    path: "course",
+                                    path: "courses",
                                     select: "courseName"
                                 })
                                 .exec();

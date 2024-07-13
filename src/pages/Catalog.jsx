@@ -13,7 +13,6 @@ const Catalog = () => {
 
     const { loading } = useSelector((state) => state.profile);
     const { catalogName } = useParams();
-    // console.log("name", catalogName);
     const [active, setActive] = useState(1);
     const [catalogPageData, setCatalogPageData] = useState(null);
     const [categoryId, setCategoryId] = useState("");
@@ -33,13 +32,16 @@ const Catalog = () => {
 
     useEffect(() => {
         const getCategoryDetails = async() => {
+          console.log("Started");
             try{
+                console.log("id-->");
+                console.log("id-->", categoryId);
                 const res = await getCatalogPageData(categoryId);
                 console.log("Printing res: ", res);
                 setCatalogPageData(res);
             }
             catch(error) {
-                console.log(error)
+                console.log("error of catalog --> ", error)
             }
         }
         if(categoryId) {
@@ -57,10 +59,10 @@ const Catalog = () => {
             <div className="spinner"></div>
           </div>
         )
-      }
-      if (!loading && !catalogPageData.success) {
-        return <Error />
-      }
+    }
+    if (!loading && !catalogPageData.success) {
+      return <Error />
+    }
     
       return (
         <>

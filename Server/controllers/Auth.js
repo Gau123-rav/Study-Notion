@@ -31,7 +31,7 @@ exports.sendOTP = async (req, res) => {
       lowerCaseAlphabets: false,
       specialChars: false,
     });
-    console.log("OTP generated: ", otp);
+    console.log("OTP generated:     ", otp);
 
     // Check unique otp or not
     let result = await OTP.findOne({ otp: otp });
@@ -49,7 +49,7 @@ exports.sendOTP = async (req, res) => {
 
     // Create an entry for OTP
     const otpBody = await OTP.create(otpPayload);
-    console.log(otpBody);
+    console.log("res-->", otpBody);
 
     // Return response successful
     res.status(200).json({
